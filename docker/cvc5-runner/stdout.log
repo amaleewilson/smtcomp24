@@ -1,0 +1,128 @@
+size 8
+num_partitioning_leaders 1
+num_scramble_leaders 2
+num_dedicated_cores 3
+num_partition_cores 2
+num_scrambles 3
+total num cores used 8
+size 8
+num_partitioning_leaders 1
+num_scramble_leaders 2
+num_dedicated_cores 3
+num_partition_cores 2
+num_scrambles 3
+total num cores used 8
+leader ip 172.18.0.3
+size 8
+num_partitioning_leaders 1
+num_scramble_leaders 2
+num_dedicated_cores 3
+num_partition_cores 2
+num_scrambles 3
+total num cores used 8
+size 8
+num_partitioning_leaders 1
+num_scramble_leaders 2
+num_dedicated_cores 3
+num_partition_cores 2
+num_scrambles 3
+total num cores used 8
+size 8
+num_partitioning_leaders 1
+num_scramble_leaders 2
+num_dedicated_cores 3
+num_partition_cores 2
+num_scrambles 3
+total num cores used 8
+size 8
+num_partitioning_leaders 1
+num_scramble_leaders 2
+num_dedicated_cores 3
+num_partition_cores 2
+num_scrambles 3
+total num cores used 8
+size 8
+num_partitioning_leaders 1
+num_scramble_leaders 2
+num_dedicated_cores 3
+num_partition_cores 2
+num_scrambles 3
+all nodes leader iptotal num cores used 8
+all nodes leader ip 172.18.0.3all nodes leader ip 172.18.0.3
+my rank 4 GTE num_dedicated_cores 3
+
+ 172.18.0.3
+scram rank 0 sending scramble to i= 3
+get_scrambles /rundir/experiment/test.smt2 3
+my rank (partitioning leader) 2 scram_cmd /competition/scrambler  -seed 51490 < /rundir/experiment/test.smt2 > /tmp/tmpkaf6q7yj
+copying /rundir/experiment/test.smt2 from 172.18.0.3
+scp_cmd (partitioning leader) 2 scp 172.18.0.3:/rundir/experiment/test.smt2 /tmp/og_problem2.smt2
+all nodes leader ip 172.18.0.3
+my rank 6 GTE num_dedicated_cores 3
+all nodes leader ip 172.18.0.3
+my rank 3 GTE num_dedicated_cores 3
+all nodes leader ip 172.18.0.3
+scram rank 1 sending scramble to i= 4
+get_scrambles /rundir/experiment/test.smt2 4
+size 8
+num_partitioning_leaders 1
+num_scramble_leaders 2
+num_dedicated_cores 3
+num_partition_cores 2
+num_scrambles 3
+total num cores used 8
+all nodes leader ip 172.18.0.3
+my rank 5 GTE num_dedicated_cores 3
+all nodes leader ip 172.18.0.3
+my rank 7 GTE num_dedicated_cores 3
+scram_cmd /competition/scrambler  -seed 18463 < /rundir/experiment/test.smt2 > /tmp/tmpbl4gl501
+my rank (scram worker) 3 LT num_dedicated_cores + num_scrambles 6
+my rank (scram worker) 3 copying /tmp/tmpkaf6q7yj from 172.18.0.3
+scp_cmd scp 172.18.0.3:/tmp/tmpkaf6q7yj /tmp/tmpkaf6q7yj3.smt2 try number 0
+my rank (scram worker) 4 LT num_dedicated_cores + num_scrambles 6
+my rank (scram worker) 4 copying /tmp/tmpbl4gl501 from 172.18.0.3
+scp_cmd scp 172.18.0.3:/tmp/tmpbl4gl501 /tmp/tmpbl4gl5014.smt2 try number 0
+(workerr) 3 scp command (try 0) succeeded with
+ stdout:  stderr: 
+ (scram worker 3) my_file /tmp/tmpkaf6q7yj3.smt2
+solver executable /competition/run-script-smtcomp-current
+SOLVE COMMAND /competition/run-script-smtcomp-current /tmp/tmpkaf6q7yj3.smt2 
+(workerr) 4 scp command (try 0) succeeded with
+ stdout:  stderr: Warning: Permanently added '172.18.0.3' (ECDSA) to the list of known hosts.
+
+ (scram worker 4) my_file /tmp/tmpbl4gl5014.smt2
+solver executable /competition/run-script-smtcomp-current
+SOLVE COMMAND /competition/run-script-smtcomp-current /tmp/tmpbl4gl5014.smt2 
+(partitioning leader) 2 scp command succeeded with
+ stdout:  stderr: Warning: Permanently added '172.18.0.3' (ECDSA) to the list of known hosts.
+
+my_file (partitioning leader) 2 /tmp/og_problem2.smt2
+Making partitons
+partitioning at least terminated
+partitions ['(>= (+ (* (- 1) lp_0_0_ULTIMATE.start_main_~x~5) (* (- 1) motzkin_1362_0) motzkin_1362_1 motzkin_1362_2 (* (- 1) motzkin_1362_3)) 0)', '(not (>= (+ (* (- 1) lp_0_0_ULTIMATE.start_main_~x~5) (* (- 1) motzkin_1362_0) motzkin_1362_1 motzkin_1362_2 (* (- 1) motzkin_1362_3)) 0))', 'unsat']
+(partitioning leader) 2 partitions ['(>= (+ (* (- 1) lp_0_0_ULTIMATE.start_main_~x~5) (* (- 1) motzkin_1362_0) motzkin_1362_1 motzkin_1362_2 (* (- 1) motzkin_1362_3)) 0)', '(not (>= (+ (* (- 1) lp_0_0_ULTIMATE.start_main_~x~5) (* (- 1) motzkin_1362_0) motzkin_1362_1 motzkin_1362_2 (* (- 1) motzkin_1362_3)) 0))']
+sending a partition to i =  6
+sending a partition to i =  7
+my rank (partitioning worker) 6 GTE num_dedicated_cores + num_scrambles 6
+my rank (partitioning worker) 6 copying /rundir/experiment/test.smt2 from 172.18.0.3
+scp_cmd scp 172.18.0.3:/rundir/experiment/test.smt2 /tmp/og_problem6.smt2 try number 0
+my rank (partitioning worker) 7 GTE num_dedicated_cores + num_scrambles 6
+my rank (partitioning worker) 7 copying /rundir/experiment/test.smt2 from 172.18.0.3
+scp_cmd scp 172.18.0.3:/rundir/experiment/test.smt2 /tmp/og_problem7.smt2 try number 0
+(workerr) 7 scp command (try 0) succeeded with
+ stdout:  stderr: 
+ (part worker 7) my_file /tmp/og_problem7.smt2
+PARTITION INFO : (not (>= (+ (* (- 1) lp_0_0_ULTIMATE.start_main_~x~5) (* (- 1) motzkin_1362_0) motzkin_1362_1 motzkin_1362_2 (* (- 1) motzkin_1362_3)) 0))
+solver executable /competition/run-script-smtcomp-current
+SOLVE COMMAND /competition/run-script-smtcomp-current /tmp/tmpnlarq0cy 
+(workerr) 6 scp command (try 0) succeeded with
+ stdout:  stderr: 
+ (part worker 6) my_file /tmp/og_problem6.smt2
+PARTITION INFO : (>= (+ (* (- 1) lp_0_0_ULTIMATE.start_main_~x~5) (* (- 1) motzkin_1362_0) motzkin_1362_1 motzkin_1362_2 (* (- 1) motzkin_1362_3)) 0)
+solver executable /competition/run-script-smtcomp-current
+SOLVE COMMAND /competition/run-script-smtcomp-current /tmp/tmpoj5jiytj 
+partition result unsat
+partition result unsat
+RESULT_DATA {"final_result" : "unsat", } END_RESULT_DATA
+cleaning up leader
+Cleaning up leader: Killing all leader processes (mpirun, cvc5)
