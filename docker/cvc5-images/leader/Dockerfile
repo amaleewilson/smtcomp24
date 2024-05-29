@@ -1,11 +1,15 @@
-################### Use Mallob
+################### Use cvc5
 FROM cloud-cvc5:common AS builder
 USER root
 
+RUN chmod -R 1777 /tmp
 
 ################### Extract cvc5 in run stage
 FROM satcomp-infrastructure:leader AS cvc5_liaison
 WORKDIR /
+
+ENV PATH="/usr/local/bin:${PATH}"
+ENV LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
 
 RUN /usr/bin/python3.8 -m pip install mpi4py
 COPY --from=builder /cvc5/build/bin/cvc5 cvc5

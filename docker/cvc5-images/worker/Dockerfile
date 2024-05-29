@@ -3,10 +3,15 @@
 FROM cloud-cvc5:common AS builder
 USER root
 
+RUN chmod -R 1777 /tmp
+
 ################### Extract cvc5 in run stage
 # this is the actual base image 
 FROM satcomp-infrastructure:worker AS cvc5_liaison
 WORKDIR /
+
+ENV PATH="/usr/local/bin:${PATH}"
+ENV LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
 
 RUN /usr/bin/python3.8 -m pip install mpi4py
 

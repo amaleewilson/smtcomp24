@@ -1,12 +1,12 @@
 #!/bin/sh
 cd common
-docker build -t cloud-cvc5:common .
+docker build --platform linux/amd64 -t cloud-cvc5:common .
 cd ..
 
 cd leader
-docker build -t cloud-cvc5:leader .
+docker build --platform linux/amd64 -t cloud-cvc5:leader .
 cd ..
 
 cd worker
-docker build -t cloud-cvc5:worker .
+docker build --platform linux/amd64 -t cloud-cvc5:worker .
 cd ..
