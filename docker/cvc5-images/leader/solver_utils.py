@@ -32,7 +32,7 @@ scrambler_seed = [
 21447, 38569, 21212, 4778, 45101, 9731, 18851, 51831, 37694, 13246, 42655, 32126, 32693, 61917, 47059, 54140, 56021, 21711, 34489, 1795]
 
 def get_input_json(request_directory):
-    print("solver_utils get_input json")
+    # print("solver_utils get_input json")
     inp = os.path.join(request_directory, "input.json")
     with open(inp) as f:
         return json.loads(f.read())
@@ -62,7 +62,7 @@ def make_partitions(partitioner, partitioner_options, number_of_partitions,
                     smt_file, checks_before_partition, checks_between_partitions,
                     strategy, time_limit):
 
-    print("Making partitons")
+    # print("Making partitons")
     # Build the partition command
     partition_command = (
         f"{partitioner} --compute-partitions={number_of_partitions} "
@@ -76,10 +76,10 @@ def make_partitions(partitioner, partitioner_options, number_of_partitions,
     try:
         output = subprocess.check_output(
             partition_command, shell=True, stderr=subprocess.STDOUT)
-        print("partitioning at least terminated")
+        # print("partitioning at least terminated")
         partitions = output.decode("utf-8").strip().split('\n')
 
-        print("partitions", partitions)
+        # print("partitions", partitions)
 
         # Handle case where problem is solved while partitioning.
         if partitions[-1] == "sat":
@@ -94,7 +94,7 @@ def make_partitions(partitioner, partitioner_options, number_of_partitions,
     except Exception as e:
         # If the partitioning timed out, good to know.
         if "timeout" in str(e.output):
-            print("timout")
+            # print("timout")
             return "timeout"
         # Any other error is just an error.
         else:
@@ -128,7 +128,7 @@ that is in the list of partitions.
 
 
 def stitch_partition(partition, parent_file):
-    print("PARTITION INFO : " + partition)
+    # print("PARTITION INFO : " + partition)
 
     # Read the original contents in
     with open(parent_file) as bench_file:
@@ -152,34 +152,34 @@ def get_private_ip(instance_id):
     return instance.private_ip_address
 
 def get_scrambles(smt_file, idx):
-    print("get_scrambles", smt_file, idx)
+    # print("get_scrambles", smt_file, idx)
     #prefix = os.path.dirname(smt_file)
     my_ip = socket.gethostbyname(socket.gethostname())
     if idx == 10: # the first one
         with tempfile.NamedTemporaryFile(delete=False) as scramble_file: 
             cp_cmd = f"cp {smt_file} {scramble_file.name}"
-            print("null scramble cp_cmd", cp_cmd)
+            # print("null scramble cp_cmd", cp_cmd)
             subprocess.run(cp_cmd, shell=True) 
             return scramble_file.name, my_ip
     else:
         seed = scrambler_seed[idx]
         with tempfile.NamedTemporaryFile(delete=False) as scramble_file:
             scram_cmd = f"/competition/scrambler  -seed {seed} < {smt_file} > {scramble_file.name}" 
-            print("scram_cmd", scram_cmd)
+            # print("scram_cmd", scram_cmd)
             subprocess.run(scram_cmd, shell=True) 
             return scramble_file.name, my_ip
 
 def make_scrambles(num_scrambles, smt_file, set_num):
-    print("smt_file", smt_file)
+    # print("smt_file", smt_file)
     scramble_file_names = []
     start_i = set_num*num_scrambles
     end_i = start_i + num_scrambles
     for i in range(start_i, end_i):
-        print("scramble i ", i)
+        # print("scramble i ", i)
         if i == 0:
             with tempfile.NamedTemporaryFile(delete=False) as scramble_file: 
                 cp_cmd = f"cp {smt_file} {scramble_file.name}"
-                print("cp_cmd", cp_cmd)
+                # print("cp_cmd", cp_cmd)
                 subprocess.run(cp_cmd, shell=True)
         else:
             seed = scrambler_seed[i]
@@ -191,12 +191,12 @@ def make_scrambles(num_scrambles, smt_file, set_num):
 
 
 def run_solver(solver_executable, stitched_path, timeout):
-    print("solver executable", solver_executable)
+    # print("solver executable", solver_executable)
     solve_command = (
         f"{solver_executable} "
         f"{stitched_path} "
     )
-    print("SOLVE COMMAND " + solve_command)
+    # print("SOLVE COMMAND " + solve_command)
     output = subprocess.run(
         solve_command, shell=True,
         stdout=subprocess.PIPE,

@@ -30,6 +30,6 @@ RUN git clone https://github.com/cvc5/cvc5.git
 WORKDIR cvc5
 RUN git fetch
 RUN git pull
-RUN git checkout main
+RUN git checkout smtcomp2024
 RUN ./configure.sh --auto-download --static --static-binary
 RUN cd build && make -j8 && cd ..

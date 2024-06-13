@@ -1,5 +1,5 @@
 ################### Use cvc5
-FROM cloud-cvc5:common AS builder
+FROM cvc5-cloud:common AS builder
 USER root
 
 RUN chmod -R 1777 /tmp

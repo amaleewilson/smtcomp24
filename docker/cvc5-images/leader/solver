@@ -81,10 +81,7 @@ class Runner:
 
 class CVC5Parser:
     @staticmethod
-    def get_result(output_file):
-        """
-        TODO: Participants should replace this with something more robust for their own solver!
-        """
+    def get_result(output_file): 
         with open(output_file) as f:
             raw_logs = f.read()
             if "unsat" in raw_logs:

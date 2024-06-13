@@ -1,6 +1,6 @@
 ################### Use cvc5
 # this is just so you cna copy things
-FROM cloud-cvc5:common AS builder
+FROM cvc5-cloud:common AS builder
 USER root
 
 RUN chmod -R 1777 /tmp
@@ -17,9 +17,9 @@ RUN /usr/bin/python3.8 -m pip install mpi4py
 
 COPY --from=builder /cvc5/build/bin/cvc5 cvc5
 COPY --from=builder /cvc5/build/bin/cvc5 /competition/cvc5
-COPY --from=cloud-cvc5:leader /competition/do_solving.py /competition/
-COPY --from=cloud-cvc5:leader /competition/solver_utils.py /competition/
-COPY --from=cloud-cvc5:leader /competition/run-script-smtcomp-current /competition/
+COPY --from=cvc5-cloud:leader /competition/do_solving.py /competition/
+COPY --from=cvc5-cloud:leader /competition/solver_utils.py /competition/
+COPY --from=cvc5-cloud:leader /competition/run-script-smtcomp-current /competition/
 
 RUN chown ecs-user /competition/do_solving.py 
 RUN chown ecs-user /competition/solver_utils.py
